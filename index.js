@@ -1,11 +1,12 @@
 const express = require("express");
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
-const app = express();
-
 const cors = require("cors");
+
+const app = express();
 app.use(cors());
 
+// Use the port from environment variable or fallback to 3000 for local development
 const PORT = process.env.PORT || 3000;
 
 // Proxy Eporner API with rewrites
@@ -71,4 +72,7 @@ app.get("/embed", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Proxy running on port ${PORT}`));
+// Listen on the correct port as provided by Render
+app.listen(PORT, () => {
+  console.log(`Proxy running on port ${PORT}`);
+});
